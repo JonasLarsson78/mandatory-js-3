@@ -71,7 +71,7 @@ footer{
     width: 500px;
     height: 300px;
     text-align: center;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
 }
 h1{
     position: absolute;
@@ -83,8 +83,34 @@ h2{
     margin-left: -20px;
     padding-top: 5px;
 }
+a{
+    color: black;
+}
+a:hover{
+    color: darkgrey;
+}
+a:visited{
+    color: darkgrey;
+}
 #subBreed{
     position: absolute;
     top: 440px;
     left: 200px;
+}
+#breeds{
+    font-size: 25px;
+}
+#switchBtn{
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    background: darkgreen;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 5px 5px 2px 2px black;
+}
+#switchBtn:hover{
+    background: green;
+    box-shadow: 5px 5px 2px 0px black;
 }

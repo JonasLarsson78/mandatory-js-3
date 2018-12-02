@@ -10,19 +10,20 @@ alert(hash);
 let hash = window.location.hash;
 console.log(hash);
 let subStringHash = hash.substring(1);// remove substring om document URL
-console.log(subStringHash);
 let newHash = subStringHash;
+let endHash = "";
 if (subStringHash.includes("/") === true){
     newHash = "";
     let rev = subStringHash.split("").reverse().join("");
-    console.log(rev);
     let find = rev.search("/");
-    console.log(find);
     let sub = rev.substring(find + 1);
-    console.log(sub);
     let newH = sub.split("").reverse().join("");
-    
     newHash = newH;
+}
+if (subStringHash.includes("/") === true){
+    let find = subStringHash.search("/");
+    let sub = subStringHash.substring(find + 1);
+    endHash = " " + "-" + " " + uppCase(sub);
 }
 
 
@@ -32,6 +33,7 @@ let main = document.querySelector("main");
 let subBreed = document.querySelector("#subBreed");
 let menuDom  = document.querySelector("menu");
 let listBreed = document.querySelector("#mylist");
+
 
 
 let baseUrl = "https://dog.ceo/api/breeds";
@@ -67,7 +69,7 @@ function getDataBreed() {
       console.error(err);
     } 
       else {
-      imgRender(data.message, "getDataBreed()", uppCase(subStringHash));
+      imgRender(data.message, "getDataBreed()", uppCase(newHash) + " " + endHash);
     }
   });
 }}
@@ -104,12 +106,13 @@ function imgRender(data, click, message){
     mainDom.innerHTML = "";
     
     let newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "breeds");
     let newBr = document.createElement("br");
     let newImg = document.createElement("img");
     newImg.setAttribute("src", data);
     let newBtn = document.createElement("button");
     newBtn.setAttribute("id", "switchBtn");
-    newBtn.innerHTML = "Byta Bild";
+    newBtn.innerHTML = "New image";
     
     newBtn.setAttribute("onClick", click);
     newDiv.innerHTML = message;
@@ -119,6 +122,7 @@ function imgRender(data, click, message){
     mainDom.appendChild(newImg);
     mainDom.appendChild(newBr);
     mainDom.appendChild(newBtn);
+    
 }
 
 let newH2 = document.createElement("h2");
@@ -144,36 +148,24 @@ function breedList(data){
     }
 }
 
+
+
+
 function subBreedList(data){
+    let newH2 = document.createElement("h2");
+    newH2.textContent = "Sub Breeds:";
     let newUl = document.createElement("ul");
-    newUl.setAttribute("id", "subBredd");
-        
-        for (let subBreed in data){
-            console.log(subBreed);
-            let newList = document.createElement("li");
-            let newA = document.createElement("a");
-            newA.setAttribute("href", "#" + subBreed);
-            newA.setAttribute("onClick", "fixHach(this)");
-            
-            newA.textContent = uppCase(subBreed);
-            
-            listBreed.appendChild(newList);
-            newList.appendChild(newA);
-        
+    if (data.length !== 0){
+      subBreed.appendChild(newH2);  
     }
-}
-
-
-function subBreedList(data){
-    console.log(data);
-    let newUl = document.createElement("ul");
+    
     subBreed.appendChild(newUl);
     for (let sub of data){
      let newLi = document.createElement("li");
-        console.log(sub);
         let newA = document.createElement("a");
             newA.setAttribute("href", "#" + newHash + "/" + sub);
         newA.setAttribute("onClick", "fixHach(this)");
+        console.log(sub);
             newA.textContent = uppCase(sub);
         
         newUl.appendChild(newLi);
