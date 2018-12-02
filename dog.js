@@ -1,17 +1,8 @@
-/*let url = document.URL;
-
-let type = url.split('#');
-let hash = '';
-if(type.length > 1){
-    hash = type[1];
-alert(hash);
-}*/
-
 let hash = window.location.hash;
-console.log(hash);
-let subStringHash = hash.substring(1);// remove substring om document URL
+let subStringHash = hash.substring(1);
 let newHash = subStringHash;
 let endHash = "";
+
 if (subStringHash.includes("/") === true){
     newHash = "";
     let rev = subStringHash.split("").reverse().join("");
@@ -26,29 +17,26 @@ if (subStringHash.includes("/") === true){
     endHash = " " + "-" + " " + uppCase(sub);
 }
 
-
-
 let mainDom = document.querySelector("#main");
 let main = document.querySelector("main");
 let subBreed = document.querySelector("#subBreed");
 let menuDom  = document.querySelector("menu");
 let listBreed = document.querySelector("#mylist");
 
-
-
 let baseUrl = "https://dog.ceo/api/breeds";
 
 function req(method, url, data, cb) {
   let req = new XMLHttpRequest();
-  req.addEventListener("load", function() {
+    req.addEventListener("load", function() {
     if (this.status >= 200 && this.status < 300) {
-      let data = null;
-      if (this.responseText) {
+        let data = null;
+    if (this.responseText) {
         data = JSON.parse(this.responseText);
       } 
-      if (typeof cb === "function") cb(null, data);
-    } else {
-      if (typeof cb === "function") cb(new Error("Invalid status"), null);
+        if (typeof cb === "function") cb(null, data);
+    } 
+        else {
+        if (typeof cb === "function") cb(new Error("Invalid status"), null);
     }
   });
 
@@ -60,7 +48,6 @@ function req(method, url, data, cb) {
     req.send();
   }
 }
-
 
 function getDataBreed() {
     if (hash){
@@ -74,7 +61,7 @@ function getDataBreed() {
   });
 }}
 function getDataRamdom() {
-  req("GET", baseUrl + "/image/random", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breeds/image/random", undefined, function(err, data) {
     if (err) {
       console.error(err);
     } else {
@@ -83,7 +70,7 @@ function getDataRamdom() {
   });
 }
 function getDataAllBreeds() {
-  req("GET", baseUrl + "/list/all", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breeds/list/all", undefined, function(err, data) {
     if (err) {
       console.error(err);
     } else {
@@ -103,26 +90,24 @@ function getDataSubBreeds() {
 }
 
 function imgRender(data, click, message){
-    mainDom.innerHTML = "";
+        mainDom.innerHTML = "";
     
     let newDiv = document.createElement("div");
-    newDiv.setAttribute("id", "breeds");
+        newDiv.setAttribute("id", "breeds");
     let newBr = document.createElement("br");
     let newImg = document.createElement("img");
-    newImg.setAttribute("src", data);
+        newImg.setAttribute("src", data);
     let newBtn = document.createElement("button");
-    newBtn.setAttribute("id", "switchBtn");
-    newBtn.innerHTML = "New image";
+        newBtn.setAttribute("id", "switchBtn");
+        newBtn.innerHTML = "New image";
+        newBtn.setAttribute("onClick", click);
+        newDiv.innerHTML = message;
     
-    newBtn.setAttribute("onClick", click);
-    newDiv.innerHTML = message;
-    
-    mainDom.appendChild(newDiv);
-    mainDom.appendChild(newBr);
-    mainDom.appendChild(newImg);
-    mainDom.appendChild(newBr);
-    mainDom.appendChild(newBtn);
-    
+        mainDom.appendChild(newDiv);
+        mainDom.appendChild(newBr);
+        mainDom.appendChild(newImg);
+        mainDom.appendChild(newBr);
+        mainDom.appendChild(newBtn);
 }
 
 let newH2 = document.createElement("h2");
@@ -131,70 +116,55 @@ let newH2 = document.createElement("h2");
     menuDom.appendChild(newH2);
 
 function breedList(data){
-    
         
-        for (let allBreed in data){
-            
-            let newList = document.createElement("li");
-            let newA = document.createElement("a");
+    for (let allBreed in data){
+        let newList = document.createElement("li");
+        let newA = document.createElement("a");
             newA.setAttribute("href", "#" + allBreed);
             newA.setAttribute("onClick", "fixHach(this)");
-            
             newA.textContent = uppCase(allBreed);
             
             listBreed.appendChild(newList);
             newList.appendChild(newA);
-        
     }
 }
-
-
-
 
 function subBreedList(data){
     let newH2 = document.createElement("h2");
-    newH2.textContent = "Sub Breeds:";
+        newH2.textContent = "Sub Breeds:";
     let newUl = document.createElement("ul");
-    if (data.length !== 0){
-      subBreed.appendChild(newH2);  
+        if (data.length !== 0){
+            subBreed.appendChild(newH2);  
     }
     
-    subBreed.appendChild(newUl);
+        subBreed.appendChild(newUl);
     for (let sub of data){
-     let newLi = document.createElement("li");
+        let newLi = document.createElement("li");
         let newA = document.createElement("a");
             newA.setAttribute("href", "#" + newHash + "/" + sub);
-        newA.setAttribute("onClick", "fixHach(this)");
-        console.log(sub);
+            newA.setAttribute("onClick", "fixHach(this)");
             newA.textContent = uppCase(sub);
         
-        newUl.appendChild(newLi);
-        newLi.appendChild(newA);
+            newUl.appendChild(newLi);
+            newLi.appendChild(newA);
 }
     }
-    
-
 
 function fixHach(e){
-    let click = e.target;
+   let click = e.target;
    let newHa = "#" + click.value;
-    window.location.hash = newHa;
-   location.reload();
+        window.location.hash = newHa;
+        location.reload();
 }
-
-
 
 function uppCase(str){
     let x =  str.charAt(0).toUpperCase() + str.slice(1);
     return x;
 }
 
-
-
 if(hash){
    getDataBreed();
    getDataSubBreeds();
-
 }
 if(hash === ""){
    getDataRamdom(); 
