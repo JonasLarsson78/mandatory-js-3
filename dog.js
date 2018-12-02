@@ -1,4 +1,4 @@
-let hash = window.location.search;
+let hash = window.location.hash;
 let subStringHash = hash.substring(1);
 console.log(subStringHash);
 let newHash = subStringHash;
