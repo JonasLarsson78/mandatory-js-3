@@ -1,5 +1,15 @@
+/*let url = document.URL;
+
+let type = url.split('#');
+let hash = '';
+if(type.length > 1){
+    hash = type[1];
+alert(hash);
+}*/
+
 let hash = window.location.hash;
-let subStringHash = hash.substring(1);
+console.log(hash);
+let subStringHash = hash.substring(1);// remove substring om document URL
 console.log(subStringHash);
 let newHash = subStringHash;
 if (subStringHash.includes("/") === true){
@@ -175,9 +185,9 @@ function subBreedList(data){
 
 function fixHach(e){
     let click = e.target;
-   let newHash = "#" + click.value;
-    window.location.hash = newHash;
-    location.reload();
+   let newHa = "#" + click.value;
+    window.location.hash = newHa;
+   location.reload();
 }
 
 
