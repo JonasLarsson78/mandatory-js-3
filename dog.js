@@ -133,6 +133,7 @@ function subBreedList(data){
     let newH2 = document.createElement("h2");
         newH2.textContent = "Sub Breeds:";
     let newUl = document.createElement("ul");
+        newUl.setAttribute("id", "subBreedUl");
         if (data.length !== 0){
             subBreed.appendChild(newH2);  
     }
@@ -140,6 +141,7 @@ function subBreedList(data){
         subBreed.appendChild(newUl);
     for (let sub of data){
         let newLi = document.createElement("li");
+            newLi.setAttribute("class", "subBreedLi");
         let newA = document.createElement("a");
             newA.setAttribute("href", "#" + newHash + "/" + sub);
             newA.setAttribute("onClick", "fixHach(this)");

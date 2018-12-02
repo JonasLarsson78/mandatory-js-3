@@ -21,7 +21,7 @@ menu{
     padding-right: 10px;
     background: grey;
 }
-ul{
+menu ul {
     position: absolute;
     top: 30px;
     left: -20px;
@@ -31,7 +31,7 @@ ul{
     padding-right: 4px;
     
 }
-li{
+menu li{
     position: relative;
     font-size: 20px;
     padding: 4px;
@@ -82,7 +82,10 @@ h1{
     left: 20px;
     color: white;
 }
-h2{
+main h2{
+    position: absolute;
+    top: -45px;
+    left: 50px;
     margin-left: -20px;
     padding-top: 5px;
 }
@@ -117,3 +120,22 @@ a:visited{
     background: green;
     box-shadow: 5px 5px 2px 0px black;
 }
+main ul{
+  left: -100px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 300px;
+  list-style: none;
+    
+}
+main li{
+    font-size: 20px;
+    padding: 4px;
+    
+}   
+    
+    
+    
