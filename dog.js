@@ -23,8 +23,6 @@ let subBreed = document.querySelector("#subBreed");
 let menuDom  = document.querySelector("menu");
 let listBreed = document.querySelector("#mylist");
 
-let baseUrl = "https://dog.ceo/api/breeds";
-
 function req(method, url, data, cb) {
   let req = new XMLHttpRequest();
     req.addEventListener("load", function() {
@@ -149,12 +147,12 @@ function subBreedList(data){
         
             newUl.appendChild(newLi);
             newLi.appendChild(newA);
-}
     }
+}
 
 function fixHach(e){
    let click = e.target;
-   let newHa = "#" + click.value;
+    let newHa = "#" + click.value;
         window.location.hash = newHa;
         location.reload();
 }
