@@ -10,9 +10,15 @@ if (subStringHash.includes("/") === true){
     let sub = rev.substring(find + 1);
     let newH = sub.split("").reverse().join("");
     newHash = newH;
-    let sub2 = subStringHash.substring(find + 1);
-    endHash = " " + "-" + " " + uppCase(sub2);
+    
 }
+
+if (subStringHash.includes("/") === true){
+    let find = subStringHash.search("/");
+    let sub = subStringHash.substring(find + 1);
+    endHash = " " + "-" + " " + uppCase(sub);
+}
+
 
 let mainDom = document.querySelector("#main");
 let main = document.querySelector("main");
