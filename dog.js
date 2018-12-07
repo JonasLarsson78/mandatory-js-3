@@ -10,11 +10,8 @@ if (subStringHash.includes("/") === true){
     let sub = rev.substring(find + 1);
     let newH = sub.split("").reverse().join("");
     newHash = newH;
-}
-if (subStringHash.includes("/") === true){
-    let find = subStringHash.search("/");
-    let sub = subStringHash.substring(find + 1);
-    endHash = " " + "-" + " " + uppCase(sub);
+    let sub2 = subStringHash.substring(find + 1);
+    endHash = " " + "-" + " " + uppCase(sub2);
 }
 
 let mainDom = document.querySelector("#main");
@@ -42,43 +39,48 @@ function req(method, url, data, cb) {
   if (data) {
     req.setRequestHeader("Content-Type", "application/json");
     req.send(JSON.stringify(data));
-  } else {
+  }
+    else {
     req.send();
   }
 }
 
 function getDataBreed() {
     if (hash){
-  req("GET", "https://dog.ceo/api/breed/" + subStringHash + "/images/random", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breed/" + subStringHash + "/images/random", undefined, (err, data) => {
     if (err) {
       console.error(err);
-    } 
-      else {
+    }
+    else {
       imgRender(data.message, "getDataBreed()", uppCase(newHash) + " " + endHash);
     }
   });
 }}
+
 function getDataRamdom() {
-  req("GET", "https://dog.ceo/api/breeds/image/random", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breeds/image/random", undefined, (err, data) => {
     if (err) {
       console.error(err);
-    } else {
+    }
+    else {
       imgRender(data.message, "getDataRamdom()", "Random Dog");
     }
   });
 }
+
 function getDataAllBreeds() {
-  req("GET", "https://dog.ceo/api/breeds/list/all", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breeds/list/all", undefined, (err, data) => {
     if (err) {
       console.error(err);
-    } else {
+    } 
+    else {
       breedList(data.message);
     }
   });
 }
 
 function getDataSubBreeds() {
-  req("GET", "https://dog.ceo/api/breed/" + newHash + "/list", undefined, function(err, data) {
+  req("GET", "https://dog.ceo/api/breed/" + newHash + "/list", undefined, (err, data) => {
     if (err) {
       console.error(err);
     } else {
