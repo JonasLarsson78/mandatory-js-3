@@ -4,6 +4,11 @@ let subStringHash = hash.substring(1);
 let newHash = subStringHash;
 let endHash = "";
 
+// ReloadPage on hashchange
+window.addEventListener("hashchange", function() {
+  location.reload();
+});
+
 if (subStringHash.includes("/") === true){
     newHash = "";
     let rev = subStringHash.split("").reverse().join("");
@@ -121,7 +126,6 @@ function breedList(data){
         let newList = document.createElement("li");
         let newA = document.createElement("a");
             newA.setAttribute("href", "#" + allBreed);
-            newA.setAttribute("onClick", "reloadPage()");
             newA.textContent = uppCase(allBreed);
             listBreed.appendChild(newList);
             newList.appendChild(newA);
@@ -142,15 +146,10 @@ function subBreedList(data){
             newLi.setAttribute("class", "subBreedLi");
         let newA = document.createElement("a");
             newA.setAttribute("href", "#" + newHash + "/" + sub);
-            newA.setAttribute("onClick", "reloadPage()");
             newA.textContent = uppCase(sub);
             newUl.appendChild(newLi);
             newLi.appendChild(newA);
     }
-}
-// ReloadPage
-function reloadPage(){
-    location.reload();
 }
 // Gör första bokstaven stor
 function uppCase(str){
