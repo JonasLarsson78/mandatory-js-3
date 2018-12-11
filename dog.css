@@ -67,12 +67,7 @@ footer{
     border-width: 7px;
     border-color: lightblue;
 }
-h1{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: white;
-}
+
 main h2{
     position: absolute;
     top: -45px;
@@ -127,3 +122,15 @@ main li{
     padding: 4px;
     
 }   
+h1{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+}
+h1 a{
+    color: white;
+}
+h1 a:visited{
+    color: white
+}
