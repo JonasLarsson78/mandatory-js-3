@@ -45,13 +45,8 @@ function req(method, url, data, cb) {
     }
   });
   req.open(method, url);
-  if (data) {
-    req.setRequestHeader("Content-Type", "application/json");
-    req.send(JSON.stringify(data));
-  }
-    else {
-    req.send();
-  }
+  req.send();
+  
 }
 // Random på vald hundras
 function getDataBreed() {
